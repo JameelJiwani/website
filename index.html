@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Neofetch Terminal</title>
+    <link rel="stylesheet" href="style.css">
+	<link rel="icon" href="data:,">
+</head>
+<body>
+    <div class="container">
+        <div class="terminal">
+            <div class="terminal-content">
+                <div class="ascii-art">
+                    <pre>
+		   /#\
+                  /###\
+                 /#####\
+                /#######\
+               _ "=######\
+              /##=,_\#####\
+             /#############\
+            /###############\
+           /#################\
+          /###################\
+         /########*"""*########\
+        /#######/       \#######\
+       /########         ########\
+      /#########         ######m=,_
+     /##########         ##########\
+    /######***             ***######\
+   /###**                       **###\
+  /**                               **\\
+                    </pre>
+                </div>
+                <div class="system-info">
+                    <div class="user-line">jameel@jiwani</div>
+                    <div class="separator">----------</div>
+                    <div class="info-item"><span class="label">OS:</span> Arch Linux x86_64</div>
+                    <div class="info-item"><span class="label">Host:</span> Toronto, Ontario, Canada</div>
+                    <div class="info-item"><span class="label">Kernel:</span> 4.14.10-1-ARCH</div>
+                    <div class="info-item"><span class="label">Uptime:</span> <span id="uptime">calculating...</span></div>
+                    <div class="info-item"><span class="label">Packages:</span> 713</div>
+                    <div class="info-item"><span class="label">Shell:</span> bash 4.4.12</div>
+                    <div class="info-item"><span class="label">Resolution:</span> 3200x1800</div>
+                    <div class="info-item"><span class="label">WM:</span> Openbox</div>
+                    <div class="info-item"><span class="label">WM Theme:</span> Thicc</div>
+                    <div class="info-item"><span class="label">Theme:</span> Lumiere [GTK2/3]</div>
+                    <div class="info-item"><span class="label">Icons:</span> Paper [GTK2/3]</div>
+                    <div class="info-item"><span class="label">Terminal:</span> xfce4-terminal</div>
+                    <div class="info-item"><span class="label">Terminal Font:</span> Roboto Mono 12</div>
+                    <div class="info-item"><span class="label">CPU:</span> Intel i7-6500U (4) @ 3.100GHz</div>
+                    <div class="info-item"><span class="label">GPU:</span> Intel HD Graphics 520</div>
+                    <div class="info-item"><span class="label">Memory:</span> 1993MiB / 7890MiB</div>
+                    <div class="color-palette">
+                        <div class="color-block" style="background-color: #ffa07a;"></div>
+                        <div class="color-block" style="background-color: #d2b48c;"></div>
+                        <div class="color-block" style="background-color: #b0c4de;"></div>
+                        <div class="color-block" style="background-color: #708090;"></div>
+                        <div class="color-block" style="background-color: #f5f5dc;"></div>
+                        <div class="color-block" style="background-color: #deb887;"></div>
+                        <div class="color-block" style="background-color: #d3d3d3;"></div>
+                        <div class="color-block" style="background-color: #ffffff;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="prompt">
+                <span class="prompt-text">jameel ~/projects/neofetch ></span>
+                <span class="cursor">█</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function updateUptime() {
+            const startDate = new Date('1997-12-16T00:00:00');
+            const now = new Date();
+            const diff = now - startDate;
+            
+            const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+            const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            let uptimeText = '';
+            if (years > 0) {
+                uptimeText += `${years} year${years > 1 ? 's' : ''}`;
+                if (days > 0) uptimeText += `, ${days} day${days > 1 ? 's' : ''}`;
+            } else if (days > 0) {
+                uptimeText += `${days} day${days > 1 ? 's' : ''}`;
+            }
+            if (hours > 0) {
+                if (uptimeText) uptimeText += ', ';
+                uptimeText += `${hours} hour${hours > 1 ? 's' : ''}`;
+            }
+            if (minutes > 0) {
+                if (uptimeText) uptimeText += ', ';
+                uptimeText += `${minutes} min${minutes > 1 ? 's' : ''}`;
+            }
+            if (seconds > 0) {
+                if (uptimeText) uptimeText += ', ';
+                uptimeText += `${seconds} sec${seconds > 1 ? 's' : ''}`;
+            }
+            
+            document.getElementById('uptime').textContent = uptimeText;
+        }
+        
+        // Update immediately and then every second
+        updateUptime();
+        setInterval(updateUptime, 1000);
+    </script>
+</body>
+</html>
